@@ -1,0 +1,243 @@
+{#% load staticfiles %#}
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{%if info %}
+	{% for i in info %}
+	<title>{{ i.title_ar }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{{ i.desc_ar }}" />
+	<meta name="keywords" content="{{ i.keywords_ar }}" />
+	{%endfor%}
+	{%endif%}
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'CSS/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'CSS/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'CSS/bootstrap.css'%}">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'CSS/magnific-popup.css'%}">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{% static 'CSS/owl.carousel.min.css'%}">
+	<link rel="stylesheet" href="{% static 'CSS/owl.theme.default.min.css'%}">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'CSS/flexslider.css'%}">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'CSS/style.css'%}">
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'JS/modernizr-2.6.2.min.js'%}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'JS/respond.min.js'%}/"></script>
+	<![endif]-->
+	</head>
+	<body>
+
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+	<nav class="colorlib-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="top">
+							<div class="row">
+								<div class="col-md-6">
+									<div id="colorlib-logo"><a href="">Hammouda<span>clinic</span></a></div>
+								</div>
+								<div class="col-md-3">
+                                    {% if branches %}
+									<div class="num">
+										<span class="icon"><i class="icon-phone"></i></span>
+                                        {% for i in branches %}
+										<p><a>{{ i.phone }}</a><br>
+                                        {% endfor %}
+									</div>
+                                    {% endif %}
+								</div>
+								<div class="col-md-3">
+                                    {% if branches %}
+									<div class="loc">
+										<span class="icon"><i class="icon-location"></i></span>
+                                        {% for i in branches %}
+										<p><a>{{ i.address_ar }}</a></p>
+                                        {% endfor %}
+									</div>
+                                    {% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="menu-wrap">
+				<div class="container" >
+					<div class="row">
+
+
+                        <div  class="col-xs-7" style="float:right;">
+							<div class="menu-1" >
+								<ul style="direction: rtl;float:right;">
+									<li class="active"><a href="../" style="font-size: 22px;">الرئيسيه</a></li>
+									<li class="has-dropdown" >
+										<a href="../#colorlib-about" style="font-size: 22px;">من نحن</a>
+									</li>
+									<li><a href="../#colorlib-blog" style="font-size: 22px;">الخدمات</a></li>
+									<li class="has-dropdown">
+										<a href="../#colorlib-doctor" style="font-size: 22px;">الأطباء</a>
+									</li>
+									<li><a href="../#colorlib-choose" style="font-size: 22px;">حجز موعد</a></li>
+									<li><a href="../#colorlib-gallary" style="font-size: 22px;">جاليري</a></li>
+                                    <li><a href="../#colorlib-footer" style="font-size: 22px;">الموقع</a></li>
+								</ul>
+							</div>
+						</div>
+                         <div class="col-xs-5" style="float: right;">
+                            <a href="{{ "../../" }}" class="btn btn-primary col-md-6" style="float: right;">English</a>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+<br>
+{% if reqserv%}
+   {%for i in reqserv%}
+        <div class="container" >
+            <div class="row" style="word-wrap : break-word;">
+                <img src={{ i.image_name.url }} class="col-md-6">
+                <center class="col-md-6">
+                    <h1>{{ i.service_name_ar}}</h1>
+                    <p>{{ i.long_desc_ar}}</p>
+                </center>
+            </div>
+        </div>
+        {%endfor%}
+{%endif%}
+<br>
+<center>
+<a href="../" class="btn btn-primary">الرئيسية</a>
+</center>
+<br>
+
+	<footer id="colorlib-footer" role="contentinfo">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-3 colorlib-widget">
+                    {% if branches %}
+                        {% for i in branches %}
+						<h3>{{ i.branch_name_ar }}</h3>
+						<ul class="colorlib-footer-links">
+							<li>{{ i.address_en }}</li>
+							<li><i class="icon-phone"></i>{{ i.phone }}</li>
+                            {% if i.mail%}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-mail"></i> {{ i.mail }}</a></li>
+							{% endif %}
+                            {% if i.Facebook %}
+							<li><a href="mailto:info@yoursite.com"><i class="icon-facebook2"></i> {{ i.Facebook }}</a></li>
+                            {% endif %}
+                            {% if i.Instgram %}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-instagram"></i> {{ i.Instgram }}</a></li>
+                            {% endif %}
+                            {% if i.Youtube %}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-youtube"></i> {{ i.Youtube }}</a></li>
+                            {% endif %}
+                            {% if i.GoogleBussiness %}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-google"></i>{{ i.GoogleBussiness }}</a></li>
+							{% endif %}
+
+
+						</ul>
+                        {% endfor %}
+                    {% endif %}
+					</div>
+                    {% if time %}
+					<div class="col-md-2 colorlib-widget">
+						<h3>المواعيد</h3>
+                        {% for i in time %}
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a >{{ i }}</a></li>
+							</ul>
+						</p>
+                        {% endfor %}
+					</div>
+                    {% endif %}
+            {% if branches %}
+            <div class="col-md-7">
+               {% for i in branches %}
+                <iframe src="{{ i.location }}" style="height: 320px ;width:100%;" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+               {% endfor %}
+            </div>
+            {% endif %}
+
+			</div>
+		</div>
+		<div class="row copyright">
+			<div class="col-md-12 text-center">
+				<p>
+					<small class="block" style="direction:rtl;">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+حقوق الملكية &copy;<script>document.write(new Date().getFullYear());</script> كل الحقوق محفوظة | طور بواسطة <i class="icon-heart" aria-hidden="true"></i><a href="https://algawhar.com" target="_blank">الجوهر</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small> 
+
+				</p>
+			</div>
+		</div>
+	</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="{% static 'JS/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'JS/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'JS/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'JS/jquery.waypoints.min.js' %}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{% static 'JS/jquery.stellar.min.js' %}"></script>
+	<!-- Carousel -->
+	<script src="{% static 'JS/owl.carousel.min.js' %}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'JS/jquery.flexslider-min.js' %}"></script>
+	<!-- countTo -->
+	<script src="{% static 'JS/jquery.countTo.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'JS/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'JS/magnific-popup-options.js' %}"></script>
+	<!-- Sticky Kit -->
+	<script src="{% static 'JS/sticky-kit.min.js' %}"></script>
+	<!-- Main -->
+	<script src="{% static 'JS/main.js' %}"></script>
+
+	</body>
+</html>
+

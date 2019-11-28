@@ -1,0 +1,539 @@
+{#% load staticfiles %#}
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		{%if info %}
+	{% for i in info %}
+	<title>{{ i.title_ar }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{{ i.desc_ar }}" />
+	<meta name="keywords" content="{{ i.keywords_ar }}" />
+	{%endfor%}
+	{%endif%}
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'CSS/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'CSS/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'CSS/bootstrap.css'%}">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'CSS/magnific-popup.css'%}">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{% static 'CSS/owl.carousel.min.css'%}">
+	<link rel="stylesheet" href="{% static 'CSS/owl.theme.default.min.css'%}">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'CSS/flexslider.css'%}">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'CSS/style.css'%}">
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'JS/modernizr-2.6.2.min.js'%}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'JS/respond.min.js'%}/"></script>
+	<![endif]-->
+	</head>
+	<body>
+
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+	<nav class="colorlib-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="top">
+							<div class="row">
+								<div class="col-md-6">
+									<div id="colorlib-logo"><a href="">Hammouda<span>clinic</span></a></div>
+								</div>
+								<div class="col-md-3">
+                                    {% if branches %}
+									<div class="num">
+										<span class="icon"><i class="icon-phone"></i></span>
+                                        {% for i in branches %}
+										<p><a>{{ i.phone }}</a><br>
+                                        {% endfor %}
+									</div>
+                                    {% endif %}
+								</div>
+								<div class="col-md-3">
+                                    {% if branches %}
+									<div class="loc">
+										<span class="icon"><i class="icon-location"></i></span>
+                                        {% for i in branches %}
+										<p><a>{{ i.address_ar }}</a></p>
+                                        {% endfor %}
+									</div>
+                                    {% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="menu-wrap">
+				<div class="container" >
+					<div class="row">
+
+
+                        <div  class="col-xs-7" style="float:right;">
+							<div class="menu-1" >
+								<ul style="direction: rtl;float:right;">
+									<li class="active"><a href="" style="font-size: 22px;">الرئيسيه</a></li>
+									<li class="has-dropdown" >
+										<a href="#colorlib-about" style="font-size: 22px;">من نحن</a>
+									</li>
+									<li><a href="#colorlib-blog" style="font-size: 22px;">الخدمات</a></li>
+									<li class="has-dropdown">
+										<a href="#colorlib-doctor" style="font-size: 22px;">الأطباء</a>
+									</li>
+									<li><a href="#colorlib-choose" style="font-size: 22px;">حجز موعد</a></li>
+									<li><a href="#colorlib-gallary" style="font-size: 22px;">جاليري</a></li>
+                                    <li><a href="#colorlib-footer" style="font-size: 22px;">الموقع</a></li>
+								</ul>
+							</div>
+						</div>
+                         <div class="col-xs-5" style="float: right;">
+                            <a href="{{ "../" }}" class="btn btn-primary col-md-6" style="float: right;">English</a>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<aside id="colorlib-hero">
+		<div class="flexslider" style="height: 80%;">
+			<ul class="slides">
+                {% if slider %}
+                    {% for i in slider %}
+		   	<li style="background-image: url({{ i.image_name.url }}); background-size:100% 85%;"">
+
+		   	</li>
+                    {% endfor %}
+                {% endif %}
+
+		  	</ul>
+	  	</div>
+	</aside>
+
+	<div id="colorlib-counter" class="colorlib-counters">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 col-md-push-2 counter-wrap">
+					<div class="row">
+                        {% if statitistics %}
+                            {% for i in statitistics %}
+						<div class="col-md-3 col-sm-6 animate-box">
+							<div class="desc" style="direction: rtl;">
+								<p >
+									<span class="colorlib-counter js-counter" data-from="0" data-to="{{i.number}}" data-speed="5000" data-refresh-interval="50"></span>
+								</p>
+								<span class="colorlib-counter-label">{{i.name_ar}}</span>
+							</div>
+						</div>
+                            {% endfor %}
+                        {% endif %}
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+     <div id="colorlib-about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6  animate-box">
+					<img class="img-responsive about-img" src="{% static 'images/about.png' %}" alt="">
+				</div>
+				<div class="col-md-6  animate-box" style="word-wrap: break-word; direction: rtl;">
+					<h2>من نحن</h2>
+                    {% if about %}
+                        {% for i in about %}
+                            {% if i.about_title_en == 'AboutUS' %}
+                                    <p>
+                                       {{ i.about_long_desc_ar }}
+                                    </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+						<div class="fancy-collapse-panel">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        {% if about %}
+                            {% for i in about %}
+                                {% if i.about_title_en != 'AboutUS' %}
+                     <div class="panel panel-default">
+                         <div class="panel-heading" role="tab" id="headingOne">
+                             <h4 class="panel-title">
+                                 <a data-toggle="collapse" data-parent="#accordion" href="#{{ i.id }}" aria-expanded="true" aria-controls="collapseOne">{{ i.about_title_ar }}
+                                 </a>
+                             </h4>
+                         </div>
+                         <div id="{{ i.id }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                             <div class="panel-body">
+
+                                 <div class="row">
+								      		<div class="col-md-12" style="word-wrap: break-word">
+                                                <p>{{ i.about_long_desc_ar }}</p>
+								      		</div>
+
+                                 </div>
+
+                             </div>
+                         </div>
+                     </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+
+                  </div>
+               </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+   {% if services %}
+    <div id="colorlib-blog" >
+		<div class="container" style="margin-top: -100px;">
+			<div class="row animate-box" >
+				<div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
+					<h2>الخدمات</h2>
+					<!--<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>-->
+				</div>
+			</div>
+			<div class="row">
+                {% for i in services %}
+				<div class="col-md-4 animate-box" style="margin-top: -20px; direction: rtl; float: right;" >
+					<div class="blog-entry">
+						<a href="/ar/services" class="blog-img" style="background-image: url({{ i.image_name.url }});background-size:100% 100%;" ></a>
+						<div class="desc" style="word-wrap: break-word;">
+							<p class="date">
+							</p>
+							<h3><a href="/ar/services">{{ i.service_name_ar }}</a></h3>
+							<p style="height: 100px;"> {{ i.short_desc_ar }}</p>
+							<p><a href="{% url 'servicesar' i.id %}">المزيد <i class="icon-arrow-right3"></i></a></p>
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+  {% endif %}
+
+    <div class="colorlib-doctor" id="colorlib-doctor">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
+					<h2>الأطباء</h2>
+				</div>
+			</div>
+			<div class="row" >
+				<div class="col-md-12 animate-box">
+					<div class="row">
+						<div class="owl-carousel2">
+                            {% if person %}
+                                {% for i in person %}
+
+							<div class="item" style="direction: rtl;">
+
+								<div class="col-md-6">
+									<div class="doctor-desc" style="word-wrap: break-word;">
+										<h3><a>{{ i.person_name_ar }}</a></h3>
+										<span class="specialty">{{ i.person_job_ar }}</span>
+                                         <p>{{ i.person_long_desc_ar}}</p>
+									</div>
+								</div>
+                             <div class="col-md-6">
+									<div class="doctor-img" style="background-image: url({{ i.image_name.url }});">
+									</div>
+								</div>
+
+							</div>
+                                {% endfor %}
+                            {% endif %}
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div id="colorlib-choose" style="margin-top: 100px;">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="choose">
+					<div class="half img-bg" style="background-image: url({% static 'images/cover_bg_1.jpg' %});"></div>
+					<div class="half features-wrap">
+						<div class="features-services animate-box">
+							<div class="colorlib-heading animate-box col-md-12">
+                                <center>
+								<h2>حجز موعد</h2>
+                                    </center>
+							</div>
+							<div class="row">
+								<div class="col-md-12 colorlib-widget" style="margin-top:-70px;">
+					<form class="contact-form" method="post" style="direction: rtl;">
+                        {% csrf_token %}
+						<div class="form-group">
+							<label for="name" class="sr-only">Name</label>
+							<input type="text" class="form-control" name="name" placeholder="الأسم" required>
+						</div>
+                        <div class="form-group">
+							<label for="phone" class="sr-only">Name</label>
+							<input type="text" class="form-control" name="phone" placeholder="الهاتف" required>
+						</div>
+						<div class="form-group">
+							<label for="email" class="sr-only">Email</label>
+							<input type="email" class="form-control" name="email" placeholder="البريد الألكتروني" required>
+						</div>
+
+						<div class="form-group">
+							<label for="message" class="sr-only">Message</label>
+							<textarea class="form-control" name="message" rows="3" placeholder="رساله" required></textarea>
+						</div>
+						<div class="form-group">
+							<input type="submit" id="btn-submit" class="btn btn-primary btn-send-message btn-md col-md-12" value="حجز">
+						</div>
+					</form>
+				</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div id="colorlib-gallary" style="margin-top: 100px;">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
+					<h2>معلومات مفيدة</h2>
+				</div>
+			</div>
+			
+          {%if posts%}
+			<div class="row">
+              {%for i in posts%}
+                {%if i.image and not i.video%}
+				<div class="col-md-4 animate-box" style="word-wrap: break-word;">
+					<div class="blog-entry" style="text-align:right;direction:rtl;">
+						<a class="blog-img" style="background-image: url({{i.image.url}});"></a>
+						<h2 style="margin-top:10px;">{{i.caption}}</h2>
+					<p>{{i.abstract}}</p>
+					<a href="{% url 'postsar' i.id %}" class="btn btn-info">المزيد</a>
+					</div>
+					
+				</div>
+				{%endif%}
+
+                {%if i.video%}
+				<div class="col-md-4 animate-box" style="word-wrap: break-word;">
+					<div class="blog-entry" style="text-align:right;direction:rtl;">
+                             <video style="width:100%;height:250px;" frameborder="0" allowfullscreen controls>
+                              <source src={{i.video.url}} type="video/mp4">
+                              <source src={{i.video.url}} type="video/ogg">
+                            </video>
+                        	<h2>{{i.caption}}</h2>
+					<p>{{i.abstract}}</p>
+					<a href="{% url 'postsar' i.id %}" class="btn btn-info">المزيد</a>
+					</div>
+				</div>
+				{%endif%}
+				{%endfor%}
+			</div>
+			{%endif%}
+			
+			
+             <div class="row">
+                 <center>
+                 <a class="btn btn-primary" style="width: 200px;" href="/ar/posts">عرض الكل</a>
+                     </center>
+                 <br><br>
+             </div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	<div id="colorlib-gallary" style="margin-top: 100px;">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
+					<h2>جاليري</h2>
+				</div>
+			</div>
+           {% if photo %}
+			<div class="row">
+                {% for i in photo %}
+				<div class="col-md-4 animate-box" style="direction: rtl; float: right;">
+					<div class="blog-entry">
+						<a class="blog-img" style="background-image: url({{ i.photo.url }});"></a>
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+            {% endif %}
+        {% if video %}
+			<div class="row">
+                {% for i in video %}
+
+				<div class="col-md-4 animate-box" style="direction: rtl; float: right;">
+					<div class="blog-entry">
+                        <iframe src="{{ i.video }}" style="width:100%;height: 293px;" allowfullscreen></iframe>
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+            {% endif %}
+         <div class="row">
+                 <center>
+                 <a class="btn btn-primary" style="width: 200px;" href="{{ 'gallery' }}">المزيد</a>
+                     </center>
+                 <br><br>
+             </div>
+
+		</div>
+	</div>
+
+
+	<footer id="colorlib-footer" role="contentinfo">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-3 colorlib-widget">
+                    {% if branches %}
+                        {% for i in branches %}
+						<h3>{{ i.branch_name_ar }}</h3>
+						<ul class="colorlib-footer-links">
+							<li>{{ i.address_en }}</li>
+							<li><i class="icon-phone"></i>{{ i.phone }}</li>
+                            {% if i.mail%}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-mail"></i> {{ i.mail }}</a></li>
+							{% endif %}
+                            {% if i.Facebook %}
+							<li><a href="mailto:info@yoursite.com"><i class="icon-facebook2"></i> {{ i.Facebook }}</a></li>
+                            {% endif %}
+                            {% if i.Instgram %}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-instagram"></i> {{ i.Instgram }}</a></li>
+                            {% endif %}
+                            {% if i.Youtube %}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-youtube"></i> {{ i.Youtube }}</a></li>
+                            {% endif %}
+                            {% if i.GoogleBussiness %}
+                            <li><a href="mailto:info@yoursite.com"><i class="icon-google"></i>{{ i.GoogleBussiness }}</a></li>
+							{% endif %}
+
+
+						</ul>
+                        {% endfor %}
+                    {% endif %}
+					</div>
+                    {% if time %}
+					<div class="col-md-2 colorlib-widget">
+						<h3>المواعيد</h3>
+                        {% for i in time %}
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a >{{ i }}</a></li>
+							</ul>
+						</p>
+                        {% endfor %}
+					</div>
+                    {% endif %}
+            {% if branches %}
+            <div class="col-md-7">
+               {% for i in branches %}
+                <iframe src="{{ i.location }}" style="height: 320px ;width:100%;" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+               {% endfor %}
+            </div>
+            {% endif %}
+
+			</div>
+		</div>
+		<div class="row copyright">
+			<div class="col-md-12 text-center">
+				<p>
+					<small class="block" style="direction:rtl;">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+حقوق الملكية &copy;<script>document.write(new Date().getFullYear());</script> كل الحقوق محفوظة | طور بواسطة <i class="icon-heart" aria-hidden="true"></i><a href="https://algawhar.com" target="_blank">الجوهر</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small> 
+
+				</p>
+			</div>
+		</div>
+	</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="{% static 'JS/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'JS/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'JS/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'JS/jquery.waypoints.min.js' %}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{% static 'JS/jquery.stellar.min.js' %}"></script>
+	<!-- Carousel -->
+	<script src="{% static 'JS/owl.carousel.min.js' %}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'JS/jquery.flexslider-min.js' %}"></script>
+	<!-- countTo -->
+	<script src="{% static 'JS/jquery.countTo.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'JS/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'JS/magnific-popup-options.js' %}"></script>
+	<!-- Sticky Kit -->
+	<script src="{% static 'JS/sticky-kit.min.js' %}"></script>
+	<!-- Main -->
+	<script src="{% static 'JS/main.js' %}"></script>
+
+	</body>
+</html>
+
